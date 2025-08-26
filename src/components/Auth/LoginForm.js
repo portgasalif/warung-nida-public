@@ -31,7 +31,15 @@ const LoginForm = ({ setUser }) => {
   };
   const handleAnonymousLogin = async () => {
     try {
-      const userCredential = await signInAnonymously(auth);
+      // Use fixed anonymous account credentials
+      const ANONYMOUS_EMAIL = "anonymous@warung-nida.local";
+      const ANONYMOUS_PASSWORD = "anonim123";
+      
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        ANONYMOUS_EMAIL,
+        ANONYMOUS_PASSWORD
+      );
       setUser(userCredential.user);
     } catch (error) {
       console.error("Anonymous login failed:", error);
