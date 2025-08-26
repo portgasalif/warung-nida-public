@@ -1,0 +1,36 @@
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-blue);
+  color: var(--primary-yellow);
+  padding: 1rem;
+}
+
+.navBrand a {
+  color: var(--primary-yellow);
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.navLinks a {
+  color: var(--primary-yellow);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+.navLinks a:active {
+  background-color: var(--light-blue);
+  border-radius: 4px;
+  color: white;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  color: var(--primary-yellow);
+  padding: 8px 12px;
+  font-size: 1rem;
+}

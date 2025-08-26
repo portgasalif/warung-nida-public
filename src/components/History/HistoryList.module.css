@@ -1,0 +1,35 @@
+.historyTitle {
+  text-align: center;
+  padding: 1rem;
+}
+
+.historyContainer {
+
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.historyCard {
+
+  padding: 1rem;
+  border-bottom: 1px solid var(--light-blue);
+
+  background: white;
+  cursor: pointer;
+}
+
+.dateText {
+
+  color: #666;
+  margin: 0 0 0.5rem 0;
+}
+
+.totalText {
+
+  font-weight: bold;
+  color: var(--primary-blue);
+  font-size: 1.2rem;
+}

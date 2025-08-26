@@ -1,0 +1,32 @@
+import styles from "./Navbar.module.css";
+import { Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+
+const Navbar = ({ setUser }) => {
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (error) {
+      console.error("Error signing out:", error);
+      alert("Gagal keluar, silakan coba lagi.");
+    }
+  };
+  return (
+    <nav className={styles.nav}>
+      <div className={styles.navBrand}>
+        <Link to="/">🏬</Link>
+      </div>
+      <div className={styles.navLinks}>
+        <Link to="/stocks">Stok</Link>
+        <Link to="/history">Riwayat</Link>
+        <button onClick={handleSignOut} className={styles.navButton}>
+          Keluar
+        </button>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

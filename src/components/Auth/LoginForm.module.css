@@ -1,0 +1,63 @@
+.loginTitle {
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: var(--primary-blue);
+}
+
+.inputArea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+.inputData {
+  border: 1px solid var(--primary-blue);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--primary-blue);
+  outline: none;
+  font-size: 1rem;
+}
+.inputData:focus {
+  border: 1.5px solid var(--primary-yellow);
+  background: var(--light-yellow);
+}
+.buttonArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  gap: 0.5rem;
+}
+
+.button {
+  background: var(--primary-blue);
+  color: var(--primary-yellow);
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+.button:hover {
+  background: var(--light-blue);
+  color: #fff;
+}
+
+.button,
+.anonymousButton,
+.inputData {
+  padding: 0.5rem;
+}
+
+.anonymousButton {
+  padding: 0.5rem;
+  background: var(--light-yellow);
+  color: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+  border-radius: 6px;
+  font-weight: bold;
+}
+.anonymousButton:hover {
+  background: var(--primary-yellow);
+  color: var(--primary-blue);
+}

@@ -1,0 +1,50 @@
+.historyContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.historyTitle {
+  text-align: center;
+  padding: 1rem;
+}
+
+.historyCard {
+  padding: 0 1rem;
+  background: white;
+}
+
+.dateText {
+  color: var(--primary-blue);
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+}
+
+.productItem {
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.75px solid #eee;
+}
+.totalText {
+  font-weight: bold;
+  color: var(--primary-blue);
+  font-size: 1.2rem;
+  padding-top: 1rem;
+  text-align: right;
+}
+.subTotal {
+  font-weight: bold;
+  color: var(--primary-blue);
+}
+
+.sectionHeader {
+  color: var(--primary-blue);
+  border-bottom: 1px solid #eee;
+  padding: 0.5rem 0;
+}
