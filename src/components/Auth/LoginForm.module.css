@@ -1,3 +1,9 @@
+.loginContainer {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
 .loginTitle {
   text-align: center;
   padding: 1rem;
@@ -8,7 +14,7 @@
 .inputArea {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 12px;
   padding: 1rem;
 }
 .inputData {
@@ -28,7 +34,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
-  gap: 0.5rem;
+  gap: 12px;
 }
 
 .button {
@@ -37,6 +43,7 @@
   border: none;
   border-radius: 6px;
   font-weight: bold;
+  transition: background-color 0.2s;
 }
 .button:hover {
   background: var(--light-blue);
@@ -46,16 +53,17 @@
 .button,
 .anonymousButton,
 .inputData {
-  padding: 0.5rem;
+  padding: 12px;
+  min-height: 44px;
 }
 
 .anonymousButton {
-  padding: 0.5rem;
   background: var(--light-yellow);
   color: var(--primary-blue);
   border: 1px solid var(--primary-blue);
   border-radius: 6px;
   font-weight: bold;
+  transition: background-color 0.2s;
 }
 .anonymousButton:hover {
   background: var(--primary-yellow);

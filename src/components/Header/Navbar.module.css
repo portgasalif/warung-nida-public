@@ -1,10 +1,15 @@
 .nav {
   width: 100%;
+  background-color: var(--primary-blue);
+  color: var(--primary-yellow);
+}
+
+.navContainer {
+  max-width: 480px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--primary-blue);
-  color: var(--primary-yellow);
   padding: 1rem;
 }
 
@@ -14,12 +19,21 @@
   font-size: 2rem;
 }
 
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .navLinks a {
   color: var(--primary-yellow);
   text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 4px;
+  padding: 12px 16px;
+  border-radius: 6px;
   transition: background-color 0.2s;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 .navLinks a:active {
   background-color: var(--light-blue);
@@ -31,6 +45,14 @@
   background: none;
   border: none;
   color: var(--primary-yellow);
-  padding: 8px 12px;
+  padding: 12px 16px;
   font-size: 1rem;
+  min-height: 44px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.navButton:active {
+  background-color: var(--light-blue);
+  color: white;
 }

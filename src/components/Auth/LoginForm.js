@@ -31,10 +31,10 @@ const LoginForm = ({ setUser }) => {
   };
   const handleAnonymousLogin = async () => {
     try {
-      // Use fixed anonymous account credentials
+      // Demo credentials - untuk keperluan portofolio dan testing
       const ANONYMOUS_EMAIL = "anonymous@warung-nida.local";
       const ANONYMOUS_PASSWORD = "anonim123";
-      
+
       const userCredential = await signInWithEmailAndPassword(
         auth,
         ANONYMOUS_EMAIL,
@@ -47,41 +47,43 @@ const LoginForm = ({ setUser }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <div className={styles.loginTitle}>
-        <h2>Masuk</h2>
-      </div>
-      <div className={styles.inputArea}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={emailInput}
-          onChange={handleEmailChange}
-          className={styles.inputData}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Kata Sandi"
-          value={passwordInput}
-          onChange={handlePasswordChange}
-          className={styles.inputData}
-          required
-        />
-      </div>
-      <div className={styles.buttonArea}>
-        <button type="submit" className={styles.button}>
-          Masuk
-        </button>
-        <button
-          type="button"
-          className={styles.anonymousButton}
-          onClick={handleAnonymousLogin}
-        >
-          Masuk sebagai anonymous
-        </button>
-      </div>
-    </form>
+    <div className={styles.loginContainer}>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.loginTitle}>
+          <h2>Masuk</h2>
+        </div>
+        <div className={styles.inputArea}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={emailInput}
+            onChange={handleEmailChange}
+            className={styles.inputData}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Kata Sandi"
+            value={passwordInput}
+            onChange={handlePasswordChange}
+            className={styles.inputData}
+            required
+          />
+        </div>
+        <div className={styles.buttonArea}>
+          <button type="submit" className={styles.button}>
+            Masuk
+          </button>
+          <button
+            type="button"
+            className={styles.anonymousButton}
+            onClick={handleAnonymousLogin}
+          >
+            Masuk sebagai anonymous
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 export default LoginForm;

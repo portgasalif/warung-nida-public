@@ -15,15 +15,17 @@ const Navbar = ({ setUser }) => {
   };
   return (
     <nav className={styles.nav}>
-      <div className={styles.navBrand}>
-        <Link to="/">🏬</Link>
-      </div>
-      <div className={styles.navLinks}>
-        <Link to="/stocks">Stok</Link>
-        <Link to="/history">Riwayat</Link>
-        <button onClick={handleSignOut} className={styles.navButton}>
-          Keluar
-        </button>
+      <div className={styles.navContainer}>
+        <div className={styles.navBrand}>
+          <Link to="/">🏬</Link>
+        </div>
+        <div className={styles.navLinks}>
+          <Link to="/stocks">Stok</Link>
+          <Link to="/history">Riwayat</Link>
+          <button onClick={handleSignOut} className={styles.navButton}>
+            Keluar
+          </button>
+        </div>
       </div>
     </nav>
   );

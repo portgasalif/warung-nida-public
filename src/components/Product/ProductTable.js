@@ -120,7 +120,7 @@ const ProductTable = ({ products, setProducts, userSession }) => {
             <div key={product.id} className="productRow">
               <div className="productInfo">
                 <h2>{product.name}</h2>
-                <h3>Rp {product.price.toLocaleString()}</h3>
+                <h3>Rp {product.price.toLocaleString("id-ID")}</h3>
                 <h3>Stock: {product.stock - (cart[product.id] || 0)}</h3>
               </div>
               <div className="productActions">
@@ -151,7 +151,7 @@ const ProductTable = ({ products, setProducts, userSession }) => {
       </div>
       {total > 0 && (
         <div className={styles.total}>
-          <span>Total: Rp {total.toLocaleString()}</span>
+          <span>Total: Rp {total.toLocaleString("id-ID")}</span>
           <button
             className={styles.checkoutButton}
             onClick={handleCheckout}

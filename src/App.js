@@ -59,36 +59,47 @@ function App() {
   }
 
   return (
-    <Router>
-      <Navbar setUser={setUserSession} />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProductTable products={products} setProducts={setProducts} userSession={userSession} />
-          }
-        />
+    <div className="app-container">
+      <Router>
+        <Navbar setUser={setUserSession} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProductTable
+                products={products}
+                setProducts={setProducts}
+                userSession={userSession}
+              />
+            }
+          />
 
-        <Route
-          path="/stocks"
-          element={
-            <Stock
-              products={products}
-              setProducts={setProducts}
-              userSession={userSession}
-            />
-          }
-        />
-        <Route
-          path="/history"
-          element={<HistoryList userSession={userSession} />}
-        />
-        <Route
-          path="/history/:id"
-          element={<TransactionDetail products={products} userSession={userSession} />}
-        />
-      </Routes>
-    </Router>
+          <Route
+            path="/stocks"
+            element={
+              <Stock
+                products={products}
+                setProducts={setProducts}
+                userSession={userSession}
+              />
+            }
+          />
+          <Route
+            path="/history"
+            element={<HistoryList userSession={userSession} />}
+          />
+          <Route
+            path="/history/:id"
+            element={
+              <TransactionDetail
+                products={products}
+                userSession={userSession}
+              />
+            }
+          />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
