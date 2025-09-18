@@ -1,6 +1,6 @@
 import styles from "./LoginForm.module.css";
 import { useState } from "react";
-import { signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
 const LoginForm = ({ setUser }) => {

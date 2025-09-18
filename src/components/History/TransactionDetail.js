@@ -59,7 +59,7 @@ const TransactionDetail = ({ products, userSession }) => {
               return (
                 <div key={productId} className={style.productItem}>
                   <span>
-                    {product.name} - {quantity} Pcs
+                    {product.name} - {quantity} {product.unit || "pcs"}
                   </span>
                   <span className={style.subTotal}>
                     Rp {(product.price * quantity).toLocaleString("id-ID")}

@@ -16,6 +16,7 @@ const Stock = ({ products, setProducts, userSession }) => {
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productStock, setProductStock] = useState("");
+  const [productUnit, setProductUnit] = useState("pcs");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -45,6 +46,7 @@ const Stock = ({ products, setProducts, userSession }) => {
     setProductName(product.name);
     setProductPrice(product.price);
     setProductStock(product.stock);
+    setProductUnit(product.unit || "pcs");
   };
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -54,6 +56,7 @@ const Stock = ({ products, setProducts, userSession }) => {
     setProductPrice("");
     setProductStock("");
     setSelectedProduct(null);
+    setProductUnit("pcs");
   };
 
   const resetAndCloseModal = () => {
@@ -78,7 +81,10 @@ const Stock = ({ products, setProducts, userSession }) => {
     }
 
     const price = parseInt(productPrice, 10);
-    const stock = parseInt(productStock, 10);
+    const stock =
+      productUnit === "pcs"
+        ? parseInt(productStock, 10)
+        : parseFloat(productStock);
     if (isNaN(price) || isNaN(stock) || price <= 0 || stock < 0) {
       alert("Harga dan stok harus berupa angka yang valid!");
       return;
@@ -88,6 +94,7 @@ const Stock = ({ products, setProducts, userSession }) => {
       name: productName.trim(),
       price,
       stock,
+      unit: productUnit,
     };
 
     try {
@@ -147,6 +154,8 @@ const Stock = ({ products, setProducts, userSession }) => {
         className="searchBar"
       />
       {products
+        .slice()
+        .reverse()
         .filter((product) =>
           product.name.toLowerCase().includes(searchTerm.toLowerCase())
         )
@@ -155,7 +164,9 @@ const Stock = ({ products, setProducts, userSession }) => {
             <div className="productInfo">
               <h2>{product.name}</h2>
               <h3>Rp {product.price.toLocaleString("id-ID")}</h3>
-              <h3>Stock: {product.stock}</h3>
+              <h3>
+                Stock: {product.stock} {product.unit || "pcs"}
+              </h3>
             </div>
             <div className="productActions">
               <button onClick={() => handleEdit(product.id)}>Edit</button>
@@ -185,12 +196,25 @@ const Stock = ({ products, setProducts, userSession }) => {
                 onChange={(e) => setProductName(e.target.value)}
               />
               <span>Stok</span>
-              <input
-                type="number"
-                placeholder="Stok"
-                value={productStock}
-                onChange={(e) => setProductStock(e.target.value)}
-              />
+              <div className={styles.stockInputContainer}>
+                <input
+                  type="number"
+                  placeholder="Stok"
+                  value={productStock}
+                  onChange={(e) => setProductStock(e.target.value)}
+                  className={styles.stockInputField}
+                  step={productUnit === "pcs" ? "1" : "0.25"}
+                  min="0"
+                />
+                <select
+                  value={productUnit}
+                  onChange={(e) => setProductUnit(e.target.value)}
+                >
+                  <option value="pcs">pcs</option>
+                  <option value="kg">kg</option>
+                  <option value="ltr">ltr</option>
+                </select>
+              </div>
               <span>Harga</span>
               <input
                 type="number"

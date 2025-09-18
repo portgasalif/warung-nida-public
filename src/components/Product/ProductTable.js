@@ -18,10 +18,11 @@ const ProductTable = ({ products, setProducts, userSession }) => {
     const product = products.find((p) => p.id === productId);
     const currentQty = cart[productId] || 0;
 
+    const increment = (product.unit || "pcs") === "pcs" ? 1 : 0.25;
     if (product && currentQty < product.stock) {
       setCart((prevCart) => ({
         ...prevCart,
-        [productId]: (prevCart[productId] || 0) + 1,
+        [productId]: (prevCart[productId] || 0) + increment,
       }));
     } else {
       alert("Stok tidak mencukupi!");
@@ -29,11 +30,13 @@ const ProductTable = ({ products, setProducts, userSession }) => {
   };
 
   const handleDecrease = (productId) => {
+    const product = products.find((p) => p.id === productId);
     const currentQty = cart[productId] || 0;
+    const decrement = (product.unit || "pcs") === "pcs" ? 1 : 0.25;
     if (currentQty > 0) {
       setCart((prevCart) => ({
         ...prevCart,
-        [productId]: Math.max((prevCart[productId] || 0) - 1, 0),
+        [productId]: Math.max((prevCart[productId] || 0) - decrement, 0),
       }));
     } else {
       alert("Jumlah produk tidak bisa kurang dari 0!");
@@ -113,6 +116,8 @@ const ProductTable = ({ products, setProducts, userSession }) => {
           className="searchBar"
         />
         {products
+          .slice()
+          .reverse()
           .filter((product) =>
             product.name.toLowerCase().includes(searchTerm.toLowerCase())
           )
@@ -121,7 +126,11 @@ const ProductTable = ({ products, setProducts, userSession }) => {
               <div className="productInfo">
                 <h2>{product.name}</h2>
                 <h3>Rp {product.price.toLocaleString("id-ID")}</h3>
-                <h3>Stock: {product.stock - (cart[product.id] || 0)}</h3>
+                <h3>
+                  Stock: {product.stock - (cart[product.id] || 0)}
+                  {}
+                  {product.unit || " pcs"}
+                </h3>
               </div>
               <div className="productActions">
                 {cart[product.id] > 0 && (
@@ -135,13 +144,19 @@ const ProductTable = ({ products, setProducts, userSession }) => {
                   onChange={(e) => {
                     const unit = Math.max(
                       0,
-                      Math.min(parseInt(e.target.value) || 0, product.stock)
+                      Math.min(
+                        product.unit === "pcs"
+                          ? parseInt(e.target.value) || 0
+                          : parseFloat(e.target.value) || 0,
+                        product.stock
+                      )
                     );
                     setCart((prevCart) => ({
                       ...prevCart,
                       [product.id]: unit,
                     }));
                   }}
+                  step={(product.unit || "pcs") === "pcs" ? "1" : "0.25"}
                   className={styles.quantityInput}
                 />
                 <button onClick={() => handleIncrease(product.id)}>+</button>

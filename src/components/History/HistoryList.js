@@ -4,7 +4,7 @@ import style from "./HistoryList.module.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const HistoryList = ({ userSession, products }) => {
+const HistoryList = ({ userSession }) => {
   const [history, setHistory] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
