@@ -3,6 +3,7 @@ import { db } from "../../firebase";
 import style from "./TransactionDetail.module.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 const TransactionDetail = ({ products, userSession }) => {
   const [detailTransaction, setDetailTransaction] = useState(null);
@@ -36,7 +37,11 @@ const TransactionDetail = ({ products, userSession }) => {
   };
 
   if (!detailTransaction) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-container">
+        <ClipLoader color="#1e3a8a" size={50} />
+      </div>
+    );
   }
 
   return (

@@ -10,7 +10,7 @@ import Stock from "./components/Stocks/Stock";
 import HistoryList from "./components/History/HistoryList";
 import TransactionDetail from "./components/History/TransactionDetail";
 import LoginForm from "./components/Auth/LoginForm";
-
+import { ClipLoader } from "react-spinners";
 function App() {
   const [products, setProducts] = useState([]);
   const [userSession, setUserSession] = useState(null);
@@ -48,14 +48,22 @@ function App() {
   }, [userSession]);
 
   if (checkingAuth) {
-    return <div>Memuat...</div>;
+    return (
+      <div className="loading-container">
+        <ClipLoader color="#1e3a8a" loading={checkingAuth} size={50} />
+      </div>
+    );
   }
   if (!userSession) {
     return <LoginForm setUser={setUserSession} />;
   }
 
   if (loadingProducts) {
-    return <div>Memuat produk...</div>;
+    return (
+      <div className="loading-container">
+        <ClipLoader color="#1e3a8a" loading={loadingProducts} size={50} />
+      </div>
+    );
   }
 
   return (
