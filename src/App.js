@@ -11,6 +11,7 @@ import HistoryList from "./components/History/HistoryList";
 import TransactionDetail from "./components/History/TransactionDetail";
 import LoginForm from "./components/Auth/LoginForm";
 import { ClipLoader } from "react-spinners";
+import Setting from "./components/Settings/Setting";
 function App() {
   const [products, setProducts] = useState([]);
   const [userSession, setUserSession] = useState(null);
@@ -103,6 +104,12 @@ function App() {
                 products={products}
                 userSession={userSession}
               />
+            }
+          />
+          <Route
+            path="/setting"
+            element={
+              <Setting userSession={userSession} setUser={setUserSession} />
             }
           />
         </Routes>
