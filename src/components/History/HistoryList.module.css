@@ -4,7 +4,6 @@
 }
 
 .historyContainer {
-
   display: flex;
   flex-direction: column;
   max-width: 600px;
@@ -13,23 +12,20 @@
 }
 
 .historyCard {
-
   padding: 1rem;
   border-bottom: 1px solid var(--light-blue);
 
-  background: white;
+  background: var(--card-bg);
   cursor: pointer;
 }
 
 .dateText {
-
-  color: #666;
+  color: var(--text-secondary);
   margin: 0 0 0.5rem 0;
 }
 
 .totalText {
-
   font-weight: bold;
-  color: var(--primary-blue);
+  color: var(--text-primary);
   font-size: 1.2rem;
 }

@@ -1,21 +1,7 @@
 import styles from "./Navbar.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase";
+import { Link } from "react-router-dom";
 
-const Navbar = ({ setUser }) => {
-  const navigate = useNavigate();
-
-  const handleSignOut = async () => {
-    try {
-      await signOut(auth);
-      setUser(null);
-      navigate("/");
-    } catch (error) {
-      console.error("Error signing out:", error);
-      alert("Gagal keluar, silakan coba lagi.");
-    }
-  };
+const Navbar = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.navContainer}>
@@ -25,9 +11,7 @@ const Navbar = ({ setUser }) => {
         <div className={styles.navLinks}>
           <Link to="/stocks">Stok</Link>
           <Link to="/history">Riwayat</Link>
-          <button onClick={handleSignOut} className={styles.navButton}>
-            Keluar
-          </button>
+          <Link to="/setting">Setting</Link>
         </div>
       </div>
     </nav>

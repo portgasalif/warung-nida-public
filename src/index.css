@@ -3,6 +3,25 @@
   --primary-yellow: #fbbf24;
   --light-blue: #3b82f6;
   --light-yellow: #fef3c7;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --button-bg: #1e3a8a;
+  --bg-logout-button: #dc2626;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+  --card-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --button-bg: #3b82f6;
+  --bg-logout-button: #ef4444;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
+  --card-bg: #1e293b;
 }
 * {
   margin: 0;
@@ -15,6 +34,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 1s, color 0.3s;
 }
 
 code {
