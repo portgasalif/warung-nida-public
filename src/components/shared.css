@@ -17,12 +17,17 @@ h1 {
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid var(--light-yellow);
   margin-bottom: 8px;
   border-radius: 8px;
   background: var(--bg-primary);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid transparent;
   min-height: 64px;
+}
+
+[data-theme="dark"] .productRow {
+  border-color: var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .productInfo h2 {
