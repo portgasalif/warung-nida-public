@@ -13,7 +13,7 @@
 
 .historyCard {
   padding: 0 1rem;
-  background: white;
+  background: var(--card-bg);
 }
 
 .dateText {
@@ -29,7 +29,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 0.75px solid #eee;
+  border-bottom: 0.75px solid var(--border-color);
 }
 .totalText {
   font-weight: bold;
@@ -45,6 +45,6 @@
 
 .sectionHeader {
   color: var(--primary-blue);
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
   padding: 0.5rem 0;
 }

@@ -2,8 +2,6 @@ import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  
-
   return (
     <nav className={styles.nav}>
       <div className={styles.navContainer}>

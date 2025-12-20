@@ -7,8 +7,8 @@
 
 .profileCard {
   border-radius: 8px;
-  border: 1px solid gray;
-  background-color: rgb(252, 252, 252);
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;
 }
@@ -22,7 +22,7 @@
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background: #1e3a8a;
+  background: var(--primary-blue);
   color: white;
   display: flex;
   justify-content: center;
@@ -30,5 +30,29 @@
   font-size: 1.5rem;
   font-weight: bold;
 }
-.profileInfo {
+
+.toggleButton {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--button-bg);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  min-height: 44px;
+}
+
+.logoutButton {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--bg-logout-button);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  min-height: 44px;
 }

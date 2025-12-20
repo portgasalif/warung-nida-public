@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Setting.module.css";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
@@ -30,8 +29,10 @@ const Setting = ({ setUser, userSession }) => {
           </div>
         </div>
       </div>
-      <button>Dark Mode</button>
-      <button onClick={handleSignOut} className={styles.navButton}>
+      <button onClick={toggleTheme} className={styles.toggleButton}>
+        {isDark ? "Light Mode" : "Dark Mode"}
+      </button>
+      <button onClick={handleSignOut} className={styles.logoutButton}>
         Keluar
       </button>
     </div>
