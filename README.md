@@ -2,6 +2,8 @@
 
 Mobile-first POS system for small businesses built with React and Firebase.
 
+🔗 **[Live Demo](https://warungnida.netlify.app/)**
+
 ## ✨ Features
 
 - **Product Management** - Add, edit, delete, and search products with real-time inventory
@@ -15,15 +17,28 @@ Mobile-first POS system for small businesses built with React and Firebase.
 React.js • Firebase • CSS Modules • React Router
 
 ## 🚀 Quick Start
-
 ```bash
-git clone https://github.com/yourusername/warung-nida.git
+git clone https://github.com/portgasalif/warung-nida.git
 cd warung-nida
 npm install
 npm start
 ```
 
-**Firebase Setup**: Create Firebase project, enable Firestore + Auth, add config to `src/firebase.js`
+### Firebase Setup
+1. Create project at [Firebase Console](https://console.firebase.google.com/)
+2. Enable **Firestore Database** and **Authentication** (Email/Password + Anonymous)
+3. Copy config from Project Settings → General → Your apps
+4. Add to `src/firebase.js`:
+```javascript
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+```
 
 ## 📱 How to Use
 
@@ -35,4 +50,3 @@ npm start
 ## 🚧 Roadmap
 
 Dashboard analytics • Low stock alerts • Product categories • Receipt printing • Data export
-
