@@ -9,6 +9,8 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { useTheme } from "../../contexts/ThemeContext";
 
 const Stock = ({ products, setProducts, userSession }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,24 +21,74 @@ const Stock = ({ products, setProducts, userSession }) => {
   const [productUnit, setProductUnit] = useState("pcs");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const { isDark } = useTheme();
   const handleDelete = async (productId) => {
     try {
       await deleteDoc(
-        doc(db, "users", `${userSession.uid}`, "products", productId)
+        doc(db, "users", `${userSession.uid}`, "products", productId),
       );
       setProducts((prevProducts) =>
-        prevProducts.filter((p) => p.id !== productId)
+        prevProducts.filter((p) => p.id !== productId),
       );
     } catch (error) {
-      alert("Gagal menghapus produk!");
+      toast.error("Gagal menghapus produk!");
     }
   };
 
   const handleDeleteClick = (productId) => {
-    if (window.confirm("Yakin ingin menghapus produk ini?")) {
-      handleDelete(productId);
-    }
+    toast(
+      (t) => (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+            alignItems: "center",
+          }}
+        >
+          <span>Yakin ingin menghapus produk ini?</span>
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button
+              onClick={() => {
+                toast.dismiss(t.id);
+                handleDelete(productId);
+              }}
+              style={{
+                padding: "8px 12px",
+                background: "var(--bg-logout-button)",
+                color: "#fff",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer",
+              }}
+            >
+              Hapus
+            </button>
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              style={{
+                padding: "8px 12px",
+                background: "#f8fafc ",
+                color: "#1e293b",
+                border: "none",
+                borderRadius: "6px",
+                cursor: "pointer",
+              }}
+            >
+              Batal
+            </button>
+          </div>
+        </div>
+      ),
+      {
+        duration: Infinity,
+        style: {
+          background: isDark ? "#1e293b" : "#ffffff",
+          color: isDark ? "#f1f5f9" : "#1e293b",
+          border: isDark ? "1px solid #334155" : "1px solid #e2e8f0",
+        },
+      },
+    );
   };
 
   const handleEdit = (productId) => {
@@ -76,7 +128,7 @@ const Stock = ({ products, setProducts, userSession }) => {
       productPrice === "" ||
       productStock === ""
     ) {
-      alert("Semua field harus diisi!");
+      toast.error("Semua field harus diisi!");
       return;
     }
 
@@ -86,7 +138,7 @@ const Stock = ({ products, setProducts, userSession }) => {
         ? parseInt(productStock, 10)
         : parseFloat(productStock);
     if (isNaN(price) || isNaN(stock) || price <= 0 || stock < 0) {
-      alert("Harga dan stok harus berupa angka yang valid!");
+      toast.error("Harga dan stok harus berupa angka yang valid!");
       return;
     }
 
@@ -106,34 +158,34 @@ const Stock = ({ products, setProducts, userSession }) => {
             "users",
             `${userSession.uid}`,
             "products",
-            selectedProduct.id
+            selectedProduct.id,
           ),
-          productData
+          productData,
         );
         setProducts(
           products.map((product) =>
             product.id === selectedProduct.id
               ? { ...product, ...productData }
-              : product
-          )
+              : product,
+          ),
         );
-        alert("Produk berhasil diupdate!");
+        toast.success("Produk berhasil diupdate!");
       } else {
         const docRef = await addDoc(
           collection(db, "users", `${userSession.uid}`, "products"),
-          productData
+          productData,
         );
         const newProduct = { id: docRef.id, ...productData };
         setProducts((prevProducts) => [...prevProducts, newProduct]);
-        alert("Produk berhasil ditambahkan!");
+        toast.success("Produk berhasil ditambahkan!");
       }
       resetAndCloseModal();
       setIsLoading(false);
     } catch (error) {
-      alert(
+      toast.error(
         selectedProduct
           ? "Gagal mengupdate produk!"
-          : "Gagal menambahkan produk!"
+          : "Gagal menambahkan produk!",
       );
       setIsLoading(false);
     }
@@ -157,7 +209,7 @@ const Stock = ({ products, setProducts, userSession }) => {
         .slice()
         .reverse()
         .filter((product) =>
-          product.name.toLowerCase().includes(searchTerm.toLowerCase())
+          product.name.toLowerCase().includes(searchTerm.toLowerCase()),
         )
         .map((product) => (
           <div key={product.id} className="productRow">
@@ -230,8 +282,8 @@ const Stock = ({ products, setProducts, userSession }) => {
                 {isLoading
                   ? "Memuat..."
                   : selectedProduct
-                  ? "Update"
-                  : "Tambah"}
+                    ? "Update"
+                    : "Tambah"}
               </button>
             </form>
           </div>

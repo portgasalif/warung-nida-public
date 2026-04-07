@@ -3,6 +3,7 @@ import { updateDoc, doc, addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase";
 import styles from "./ProductTable.module.css";
 import "../shared.css";
+import toast from "react-hot-toast";
 
 const ProductTable = ({ products, setProducts, userSession }) => {
   const [cart, setCart] = useState({});
@@ -25,7 +26,7 @@ const ProductTable = ({ products, setProducts, userSession }) => {
         [productId]: (prevCart[productId] || 0) + increment,
       }));
     } else {
-      alert("Stok tidak mencukupi!");
+      toast.error("Stok tidak mencukupi!");
     }
   };
 
@@ -39,13 +40,13 @@ const ProductTable = ({ products, setProducts, userSession }) => {
         [productId]: Math.max((prevCart[productId] || 0) - decrement, 0),
       }));
     } else {
-      alert("Jumlah produk tidak bisa kurang dari 0!");
+      toast.error("Jumlah produk tidak bisa kurang dari 0!");
     }
   };
 
   const handleCheckout = async () => {
     if (Object.keys(cart).length === 0) {
-      alert("Keranjang belanja kosong!");
+      toast.error("Keranjang belanja kosong!");
       return;
     }
 
@@ -58,9 +59,9 @@ const ProductTable = ({ products, setProducts, userSession }) => {
             doc(db, "users", `${userSession.uid}`, "products", productId),
             {
               stock: product.stock - qty,
-            }
+            },
           );
-        })
+        }),
       );
 
       await addDoc(
@@ -77,7 +78,7 @@ const ProductTable = ({ products, setProducts, userSession }) => {
             minute: "2-digit",
             hour12: false,
           }),
-        }
+        },
       );
 
       setProducts((prevProducts) =>
@@ -89,13 +90,13 @@ const ProductTable = ({ products, setProducts, userSession }) => {
                 stock: product.stock - cartQty,
               }
             : product;
-        })
+        }),
       );
       setCart({});
-      alert("Checkout berhasil!");
+      toast.success("Checkout berhasil!");
       setIsLoading(false);
     } catch (error) {
-      alert("Gagal melakukan checkout!");
+      toast.error("Gagal melakukan checkout!");
       setIsLoading(false);
     }
   };
@@ -119,7 +120,7 @@ const ProductTable = ({ products, setProducts, userSession }) => {
           .slice()
           .reverse()
           .filter((product) =>
-            product.name.toLowerCase().includes(searchTerm.toLowerCase())
+            product.name.toLowerCase().includes(searchTerm.toLowerCase()),
           )
           .map((product) => (
             <div key={product.id} className="productRow">
@@ -148,8 +149,8 @@ const ProductTable = ({ products, setProducts, userSession }) => {
                         product.unit === "pcs"
                           ? parseInt(e.target.value) || 0
                           : parseFloat(e.target.value) || 0,
-                        product.stock
-                      )
+                        product.stock,
+                      ),
                     );
                     setCart((prevCart) => ({
                       ...prevCart,
